@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>part1 calculator in Html doc</title>
+    <style>
+        *{
+            align-items: center;
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+        }
+        label{
+            background-color:rgb(245, 204, 162);
+        }
+        div{
+            display: inline-block;
+            background-color: rgb(162, 205, 243);
+        }
+    </style>
+</head>
+<body>
+    <form id="calculatorForm">
+        <label for="aInput"> اولین ورودی</label>
+        <input type="text" id="aInput" name="a" required>
+        <br>
+        <label for="cInput">عملگر</label>
+        <input type="text" id="cInput" name="c" required>
+        <br>
+        <label for="bInput">دومین ورودی</label>
+        <input type="text" id="bInput" name="b" required>
+        <br>
+        <button type="button" onclick="calculate()">محاسبه</button>
+    </form>
+    <div id="result"></div>
+    <script>
+        function calculate(){
+            let a = parseFloat(document.getElementById("aInput").value);
+            let b = parseFloat(document.getElementById("bInput").value);
+            let c = document.getElementById("cInput").value;
+            finalCalculation(a ,b ,c);
+        }
+        function finalCalculation(a, b, c) {
+            if(isNaN(a) || isNaN(b)){
+            alert("اعداد معتبر نیست")
+        }else{
+            switch (c) {
+                case "+":
+                    showResult(a + b);
+                    break;
+                    case "-":
+                        showResult(a - b);
+                        break;
+                        case "*":
+                            showResult(a * b);
+                            break;
+                            case "/":
+                                if (b !== 0){
+                                    showResult(a / b);
+                                }else{
+                                    alert("تقسیم بر صفر؟")
+                                }
+                                break;
+                                default:
+                                    alert("از بین عملگرهای + و - و * و / انتخاب کنید.");
+                                    break;
+                                }
+                            }
+                        }
+                        function showResult(result){
+                            document.getElementById("result").innerText = 'جواب: ' + result;
+                            document.getElementById("calculatorForm").reset();
+                        }
+                    </script>
+</body>
+</html>
